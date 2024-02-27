@@ -3,110 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>DayBook</title>
-  <script>
-    function toggleFields() {
-        const inputContainer = document.getElementById('input-container');
-        inputContainer.classList.toggle('show');
-    };
-    function refreshPage() {
-      window.location.reload();
-    };
-  </script>
-  <style>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  }
+  <script src="js\refreshPage.js"></script>
+  <script src="js\toggleFields.js"></script>
 
-  thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-  }
-
-  th, td {
-    padding: 12px 15px;
-  }
-
-  tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
-
-  tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
-
-  tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-  }
-
-  tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-  }
-  .input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  /* Стили для textarea */
-  textarea.input {
-    height: 150px;
-    resize: none;
-  }
-
-  /* Стили для фокуса */
-  .input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px #007bff;
-  }
-#input-container {
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  margin-bottom: 10px;
-  display: none;
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-#input-container.show {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-.button {
-  background-color: #009879; /* Зеленый цвет фона */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px; /* Закругленные углы */
-  cursor: pointer; /* Изменение курсора при наведении */
-  transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
-}
-
-.button:hover {
-  background-color: #008CBA; /* Синий цвет фона при наведении */
-}
-</style>
+  <link rel="stylesheet" href="css\styles.css">
 </head>
 <body>
   <h1>DayBook backend test</h1>
@@ -207,17 +107,17 @@
       $exercise = $_POST['exercise'];
       $wellbeing = $_POST['wellbeing'];
       $bad_habits = $_POST['bad_habits'];
-      // Загрузка данных из CSV
+      
       $data = csvLoad('data.csv');
 
-      // Создаем новую строку с данными из формы
+      
       $new_row = [$training_status, $hrv_7_days, $hrv_today, $vo2max, $sleep_duration, $sleep_quality, $weight, $resting_calories,
       $active_calories, $resting_pulse, $max_pulse, $hydration, $steps, $stress, $exercise, $wellbeing, $bad_habits];
 
-      // Добавляем новую строку в массив
+      
       $data[] = $new_row;
 
-      // Сохранение обновленных данных в CSV
+      
       csvSave('data.csv', $data);
 
       // echo "Новые данные добавлены в файл!";
